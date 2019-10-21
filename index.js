@@ -5,7 +5,7 @@ function ScrollManager () {
   if (!(this instanceof ScrollManager)){
     return new ScrollManager();
   }
-  this.id = 0;
+  this.instanceId = 0;
 }
 
 var easeLinear = function (currentTime, start, change, duration) {
@@ -244,13 +244,15 @@ ScrollManager.prototype.scrollTo = function (options, callback) {
         var position = easeFunction(elapsedTime, start, change, duration);
 
         if (isChrome) {
-            window.scrollTo(position, 0);
+            window.scroll({
+                left: position,
+            });
         } else {
             element.scrollLeft = position;
         }
 
         if (elapsedTime < duration) {
-          this.id = raf(animate);
+          this.instanceId = raf(animate);
         } else {
           if (callback) {
             callback();
@@ -264,13 +266,15 @@ ScrollManager.prototype.scrollTo = function (options, callback) {
         var position = easeFunction(elapsedTime, start, change, duration);
 
         if (isChrome) {
-            window.scrollTo(0, position);
+            window.scroll({
+                top: position,
+            });
         } else {
             element.scrollTop = position;
         }
 
         if (elapsedTime < duration) {
-          this.id = raf(animate);
+          this.instanceId = raf(animate);
         } else {
           if (callback) {
             callback();
@@ -278,7 +282,7 @@ ScrollManager.prototype.scrollTo = function (options, callback) {
         }
       }.bind(this);
     }
-    this.id = raf(animate);
+    this.instanceId = raf(animate);
 };
 
 module.exports = ScrollManager;

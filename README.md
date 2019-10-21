@@ -5,7 +5,7 @@
 
 A handler for scrolling inside elements with different eases  
   
-  Take a look to the demo --> [Demo](http://jam3.github.io/scroll-manager/)
+  Take a look to the demo --> [Demo](http://mbfassnacht.github.io/scroll-manager/)
 
 ```js
 var ScrollManager = require('scroll-manager');
