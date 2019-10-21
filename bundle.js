@@ -228,7 +228,7 @@ Landing.prototype = {
 	init: function( req, done ) {
 		
 			
-			this.dom = domify(hbs.compile("<div id=\"Landing\">\n  <a href=\"https://github.com/Jam3/scroll-manager\">\n  <img style=\"position: absolute; top: 0; left: 0; border: 0;\" src=\"assets/images/fork-me-on-github.png\" \n  alt=\"Fork me on GitHub\"></a>\n  <div class=\"view-container\">\n    <div id=\"landing\"></div>\n    <div id=\"firstExample\"></div>\n    <div id=\"secondExample\"></div>\n    <div id=\"thirdExample\"></div>\n    <div id=\"forthExample\"></div>\n    <div id=\"fifthExample\"></div>\n    <div id=\"sixthExample\"></div>\n    <div id=\"bottomExample\"></div>\n  </div>\n  <div id=\"callback-banner\">\n    <h1 id=\"banner-text\">I´m a callback!!</h1>\n  </div>\n</div>")(model[ req.route ]));
+			this.dom = domify(hbs.compile("<div id=\"Landing\">\n  <a href=\"https://github.com/mbfassnacht/scroll-manager\">\n  <img style=\"position: absolute; top: 0; left: 0; border: 0;\" src=\"assets/images/fork-me-on-github.png\" \n  alt=\"Fork me on GitHub\"></a>\n  <div class=\"view-container\">\n    <div id=\"landing\"></div>\n    <div id=\"firstExample\"></div>\n    <div id=\"secondExample\"></div>\n    <div id=\"thirdExample\"></div>\n    <div id=\"forthExample\"></div>\n    <div id=\"fifthExample\"></div>\n    <div id=\"sixthExample\"></div>\n    <div id=\"bottomExample\"></div>\n  </div>\n  <div id=\"callback-banner\">\n    <h1 id=\"banner-text\">I´m a callback!!</h1>\n  </div>\n</div>")(model[ req.route ]));
 			document.body.appendChild(this.dom);
 
 			var viewContainer = this.dom.getElementsByClassName('view-container')[0];
