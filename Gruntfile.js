@@ -67,23 +67,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    pngmin: {
-      'dynamic': {
-        'options': {
-          'force': true,
-          'ext': '.png'
-        },
-        'files': [{
-          'expand': true,
-          'cwd': '<%= config.dev %>/assets/images/',
-          'src': [
-            '*.png',
-            'tp/*.png'
-          ],
-          'dest': '<%= config.dist %>/assets/images/'
-        }]
-      }
-    },
     watch: {
       'options': {
         'livereload': true
@@ -191,7 +174,6 @@ module.exports = function(grunt) {
   ]);
   grunt.registerTask('release', [
     'browserify:dist',
-    'pngmin',
     'copy:dist',
     'less:dist',
     'uglify'
