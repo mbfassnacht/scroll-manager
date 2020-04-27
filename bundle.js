@@ -228,7 +228,7 @@ Landing.prototype = {
 	init: function( req, done ) {
 		
 			
-			this.dom = domify(hbs.compile("<div id=\"Landing\">\n  <a href=\"https://github.com/mbfassnacht/scroll-manager\">\n  <img style=\"position: absolute; top: 0; left: 0; border: 0;\" src=\"assets/images/fork-me-on-github.png\" \n  alt=\"Fork me on GitHub\"></a>\n  <div class=\"view-container\">\n    <div id=\"landing\"></div>\n    <div id=\"firstExample\"></div>\n    <div id=\"secondExample\"></div>\n    <div id=\"thirdExample\"></div>\n    <div id=\"forthExample\"></div>\n    <div id=\"fifthExample\"></div>\n    <div id=\"sixthExample\"></div>\n    <div id=\"bottomExample\"></div>\n  </div>\n  <div id=\"callback-banner\">\n    <h1 id=\"banner-text\">I´m a callback!!</h1>\n  </div>\n</div>")(model[ req.route ]));
+			this.dom = domify(hbs.compile("<div id=\"Landing\">\n  <a href=\"https://github.com/mbfassnacht/scroll-manager\">\n  <img style=\"position: absolute; top: 0; left: 0; border: 0;\" src=\"assets/images/fork-me-on-github.png\" \n  alt=\"Fork me on GitHub\"></a>\n  <div class=\"view-container\">\n    <div id=\"landing\"></div>\n    <div id=\"firstExample\"></div>\n    <div id=\"secondExample\"></div>\n    <div id=\"thirdExample\"></div>\n    <div id=\"forthExample\"></div>\n    <div id=\"fifthExample\"></div>\n    <div id=\"sixthExample\"></div>\n    <div id=\"bottomExample\"></div>\n  </div>\n  <div id=\"callback-banner\">\n    <h1 id=\"banner-text\">I´m a callback!!</h1>\n  </div>\n</div>\n")(model[ req.route ]));
 			document.body.appendChild(this.dom);
 
 			var viewContainer = this.dom.getElementsByClassName('view-container')[0];
@@ -13768,8 +13768,6 @@ ScrollManager.prototype.scrollTo = function (options, callback) {
     duration = options.duration,
     direction = options.direction,
     ease = options.ease;
-    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-
 
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
       if (isBody(element)) {
@@ -13779,7 +13777,7 @@ ScrollManager.prototype.scrollTo = function (options, callback) {
 
     var start;
 
-    if (isChrome) {
+    if (typeof window.scrollX !== 'undefined') {
         start = (direction === 'horizontal') ? window.scrollX: window.scrollY;
     } else {
         start = (direction === 'horizontal') ? element.scrollLeft: element.scrollTop;
@@ -13801,7 +13799,7 @@ ScrollManager.prototype.scrollTo = function (options, callback) {
         elapsedTime = (currentTime.getTime() - startTime.getTime()) / 1000;
         var position = easeFunction(elapsedTime, start, change, duration);
 
-        if (isChrome) {
+        if (typeof window.scroll !== 'undefined') {
             window.scroll({
                 left: position,
             });
@@ -13823,7 +13821,7 @@ ScrollManager.prototype.scrollTo = function (options, callback) {
         elapsedTime = (currentTime.getTime() - startTime.getTime()) / 1000;
         var position = easeFunction(elapsedTime, start, change, duration);
 
-        if (isChrome) {
+        if (typeof window.scroll !== 'undefined') {
             window.scroll({
                 top: position,
             });
