@@ -210,8 +210,6 @@ ScrollManager.prototype.scrollTo = function (options, callback) {
     duration = options.duration,
     direction = options.direction,
     ease = options.ease;
-    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-
 
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
       if (isBody(element)) {
@@ -221,7 +219,7 @@ ScrollManager.prototype.scrollTo = function (options, callback) {
 
     var start;
 
-    if (isChrome) {
+    if (typeof window.scrollX !== 'undefined') {
         start = (direction === 'horizontal') ? window.scrollX: window.scrollY;
     } else {
         start = (direction === 'horizontal') ? element.scrollLeft: element.scrollTop;
@@ -243,7 +241,7 @@ ScrollManager.prototype.scrollTo = function (options, callback) {
         elapsedTime = (currentTime.getTime() - startTime.getTime()) / 1000;
         var position = easeFunction(elapsedTime, start, change, duration);
 
-        if (isChrome) {
+        if (typeof window.scroll !== 'undefined') {
             window.scroll({
                 left: position,
             });
@@ -265,7 +263,7 @@ ScrollManager.prototype.scrollTo = function (options, callback) {
         elapsedTime = (currentTime.getTime() - startTime.getTime()) / 1000;
         var position = easeFunction(elapsedTime, start, change, duration);
 
-        if (isChrome) {
+        if (typeof window.scroll !== 'undefined') {
             window.scroll({
                 top: position,
             });
